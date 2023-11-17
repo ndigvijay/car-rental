@@ -9,6 +9,7 @@ import CreateCars from './pages/car-create';
 import UpdateCar from './pages/update-car';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import DeleteCar from './pages/DeleteCar';
 const App = () => {
 
   return ( 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/admin' element={<AdminLogin/>} />
         <Route path='/createcar' element={<CreateCars/>} />
         <Route path='/updateCar' element={<UpdateCar/>} />
+        <Route path='/deletecar' element={<DeleteCar/>} />
       </Routes>
     </Router>
   );
