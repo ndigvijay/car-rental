@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const [cars, setCars] = useState([]);
+    const navigate = useNavigate();
   
     useEffect(() => {
       const fetchCars = async () => {
@@ -37,7 +39,7 @@ const Home = () => {
             <div className="row">
             {cars.map((car) => (
                 <div className="col-md-4" key={car._id}>
-                <div className="card mb-4">
+                <div className="card mb-4" onClick={() => navigate("/Rent")}>
                     <img src={car.image} className="card-img-top"style={{height:"280px",width:"auto"}} alt={car.model} />
                     <div className="card-body">
                     <h5 className="card-title">{car.make} {car.model}</h5>

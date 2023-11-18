@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from 'react-router-dom';
 
 const Cars = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -23,6 +25,11 @@ const Cars = () => {
     fetchData();
   }, []);
 
+  const handleCardClick = (car) => {
+    // Navigate to Rent component and pass car data as state
+    navigate("/Rent", { state: { car } });
+  };
+
   return (
     <div>
       <Navbar />
@@ -30,13 +37,13 @@ const Cars = () => {
         <h2>Cars</h2>
         <div className="row">
           {data.map((car) => (
-            <div key={car._id} className="col-md-4 mb-4">
+            <div key={car._id} className="col-md-4 mb-4" onClick={() => handleCardClick(car)}>
               <div className="card car-card">
                 <img
                   src={car.image}
                   className="card-img-top cars-img"
                   alt={`${car.make} ${car.model}`}
-                  style={{height:"280px",width:"auto"}}
+                  style={{ height: "280px", width: "auto" }}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{`${car.make} ${car.model}`}</h5>
