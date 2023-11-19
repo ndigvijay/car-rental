@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Cars = () => {
@@ -31,20 +32,22 @@ const Cars = () => {
         <div className="row">
           {data.map((car) => (
             <div key={car._id} className="col-md-4 mb-4">
-              <div className="card car-card">
-                <img
-                  src={car.image}
-                  className="card-img-top cars-img"
-                  alt={`${car.make} ${car.model}`}
-                  style={{height:"280px",width:"auto"}}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{`${car.make} ${car.model}`}</h5>
-                  <p className="card-text">{`Year: ${car.year}`}</p>
-                  <p className="card-text">{`Price: ${car.price}`}</p>
-                  <p className="card-text">{`Description: ${car.description}`}</p>
+              <Link to={`/cars/${car._id}`} style={{ textDecoration: 'none' }}>
+                <div className="card car-card">
+                  <img
+                    src={car.image}
+                    className="card-img-top cars-img"
+                    alt={`${car.make} ${car.model}`}
+                    style={{ height: "280px", width: "auto" }}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{`${car.make} ${car.model}`}</h5>
+                    <p className="card-text">{`Year: ${car.year}`}</p>
+                    <p className="card-text">{`Price: ${car.price}`}</p>
+                    <p className="card-text">{`Description: ${car.description}`}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

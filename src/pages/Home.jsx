@@ -25,7 +25,7 @@ const Home = () => {
     return (
        <div>
         <Navbar/>
-        <div className="container mt-5">
+        <div className="container mt-5 ">
             <div className="jumbotron">
             <h1 className="display-4">Welcome to Car Rentals</h1>
             <p className="lead">Rent a car for your next adventure!</p>

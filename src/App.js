@@ -10,6 +10,7 @@ import UpdateCar from './pages/update-car';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import DeleteCar from './pages/DeleteCar';
+import Car from './pages/Car';
 const App = () => {
 
   return ( 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/about-us' element={<AboutUs />}/>
         <Route path='/contact-us' element={<ContactUs />}/>
         <Route path='/cars' element={<Cars />}/>
+        <Route path='/cars/:carId' element={<Car/>}/>
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup />}/>
         <Route path='/admin' element={<AdminLogin/>} />
