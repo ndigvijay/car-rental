@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: 'lightblue' }}>
       <div className="container">
-        <a className="navbar-brand" href="/">Rental Company</a>
+        <a className="navbar-brand" href="/"><img className='cruise_connect_logo' src="https://rb.gy/9lnnuy" alt="logo" /></a>
 
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">
