@@ -2,56 +2,69 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
 const Home = () => {
-    const [cars, setCars] = useState([]);
-  
-    useEffect(() => {
-      const fetchCars = async () => {
-        try {
-          const response = await fetch('http://localhost:4000/app/getcarsHome'); // replace with your actual backend URL
-          if (response.ok) {
-            const data = await response.json();
-            setCars(data);
-          } else {
-            console.error('Failed to fetch cars:', response.status);
-          }
-        } catch (error) {
-          console.error('Error fetching cars:', error);
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/app/getcarsHome'); // replace with your actual backend URL
+        if (response.ok) {
+          const data = await response.json();
+          setCars(data);
+        } else {
+          console.error('Failed to fetch cars:', response.status);
         }
-      };
-  
-      fetchCars();
-    }, []);
-  
-    return (
-       <div>
-        <Navbar/>
-        <div className="container mt-5 ">
-            <div className="jumbotron">
-            <h1 className="display-4">Welcome to Car Rentals</h1>
+      } catch (error) {
+        console.error('Error fetching cars:', error);
+      }
+    };
+
+    fetchCars();
+  }, []);
+
+  return (
+    <div>
+      <Navbar />
+      <div className="home_page_div">
+
+          <div>
+            <h1>Welcome to Cruise Connect</h1>
             <p className="lead">Rent a car for your next adventure!</p>
-            <hr className="my-4" />
+            <hr/>
             <p>Explore our premium selection of cars at affordable prices.</p>
+            <br />
+            <br />
             <a href="/cars" className="btn btn-primary btn-lg">Browse Cars</a>
-            </div>
-    
-            <div className="row">
-            {cars.map((car) => (
-                <div className="col-md-4" key={car._id}>
-                <div className="card mb-4">
-                    <img src={car.image} className="card-img-top"style={{height:"280px",width:"auto"}} alt={car.model} />
-                    <div className="card-body">
-                    <h5 className="card-title">{car.make} {car.model}</h5>
-                    <p className="card-text">Year: {car.year}</p>
-                    <p className="card-text">Price: {car.price}</p>
-                    <p className="card-text">{car.description}</p>
-                    </div>
-                </div>
-                </div>
-            ))}
-            </div>
+          </div>
+
+          <div>
+            <img className='home_img' src="https://pngimg.com/d/bmw_PNG1710.png" alt="car image" />
+            <div className="home_page_inner_div"></div>
+          </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+
+
+
+{/* 
+<div className="row">
+  {cars.map((car) => (
+    <div className="col-md-4" key={car._id}>
+      <div className="card mb-4">
+        <img src={car.image} className="card-img-top" style={{ height: "280px", width: "auto" }} alt={car.model} />
+        <div className="card-body">
+          <h5 className="card-title">{car.make} {car.model}</h5>
+          <p className="card-text">Year: {car.year}</p>
+          <p className="card-text">Price: {car.price}</p>
+          <p className="card-text">{car.description}</p>
         </div>
-      </div> 
-    );
-  };
-  
-  export default Home;
+      </div>
+    </div>
+  ))}
+</div>
+*/}

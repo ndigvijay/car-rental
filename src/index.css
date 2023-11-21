@@ -84,3 +84,39 @@
 .contact_us_text {
   width: 50% !important;
 }
+
+.img_div{
+  /* background-color: rgb(0, 68, 255); */
+  /* float:right; */
+  width: 300px;
+  border-radius: 10px;
+  height: 500px;
+  
+}
+
+.home_img{
+  width: auto;
+  height:450px;
+}
+
+.home_page_div{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 85vh;
+}
+
+.home_page_inner_div{
+  border-radius: 10px;
+  width: 340px;
+  height: 460px;
+  margin-top: -66vh;
+  margin-left: 11vw;
+  background-image: url('https://img.freepik.com/premium-photo/cement-texture-wall_41969-1279.jpg');
+  background-size: cover;
+}
+
+.cruise_connect_logo{
+  width: 50px;
+}
