@@ -7,12 +7,12 @@ const CreateCars = () => {
     make:'',
     model:'',
     year:'',
-    price:'',
+    price:0,
     description:'',
     image:'',
   };
   const [form, setFormValue] = useState(initialFormValue);
-//   const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -116,6 +116,12 @@ const CreateCars = () => {
                       <button type="submit" className="btn btn-danger">
                         Add car
                       </button>
+                      <a href="/updatecar" className="nav-link">
+                        Update A Car!
+                      </a>
+                      <a href="/deletecar" className="nav-link">
+                        delete A Car!
+                      </a>
                     </div>
                   </form>
                 </div>

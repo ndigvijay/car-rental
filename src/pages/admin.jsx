@@ -29,7 +29,7 @@ const AdminLogin = () => {
         },
         body: JSON.stringify(form),
       });
-
+      // alert(response.status)
       if (response.status === 200) {
         navigate("/createcar")
         alert('Logged in successfully');
@@ -79,9 +79,6 @@ const AdminLogin = () => {
                       <button type="submit" className="btn btn-primary">
                         Login
                       </button>
-                      <a href="/update" className="nav-link">
-                        Update A Car!
-                      </a>
                     </div>
                   </form>
                 </div>

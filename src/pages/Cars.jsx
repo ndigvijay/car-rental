@@ -4,26 +4,26 @@ import Navbar from "../components/Navbar";
 
 const Cars = () => {
   const filters = {
-    model: "",
-    minPrice: 0,
+      minPrice: 0,
     maxPrice: 0,
   };
-
-  const [make, setMake] = useState([]);
-  const [data, setData] = useState([]);
+  const intial_setmake=[]
+  const intial_setdata=[]
+  const [make, setMake] = useState(intial_setmake);
+  const [data, setData] = useState(intial_setdata);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState(filters);
+  const [filtermake,setFiltermake]=useState('');
 
   const handleFilter = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/app/filtercars?make=${make}&search=${searchTerm}&filter=${filter}`);
-
-      if (response.status === 200) {
+      const response = await fetch(`http://localhost:4000/app/filtercars?make=${filtermake}&model=${searchTerm}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}`);
+      if(response.status===200){
         const jsonData = await response.json();
-        setData(jsonData);
+          setData(jsonData)
       }
-      else {
-        alert("No such cars are available at the moment!");
+      else{
+        alert("no cars yo")
       }
     }
     catch(error) {
@@ -41,6 +41,7 @@ const Cars = () => {
 
         const brands = [...new Set(jsonData.map(car => car.make))];
         setMake(brands);
+
       } else {
         alert("No cars matching the search term");
       }
@@ -102,7 +103,7 @@ const Cars = () => {
                 >
                   <option value="">All Brands</option>
                   {make.map((brand, index) => (
-                    <option key={index} value={brand}>{brand}</option>
+                    <option key={index} value={brand} onChange={(e)=>setFiltermake(e.target.value)}>{brand}</option>
                   ))}
                 </select>
               </div>

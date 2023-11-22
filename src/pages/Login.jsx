@@ -84,6 +84,9 @@ const Login = () => {
                       <a href="/signup" className="nav-link">
                         Don't have an account?
                       </a>
+                      <a href="/admin" className="nav-link">
+                        want to login as admin?
+                      </a>
                     </div>
                   </form>
                 </div>
