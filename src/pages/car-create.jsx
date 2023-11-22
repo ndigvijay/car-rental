@@ -7,7 +7,7 @@ const CreateCars = () => {
     make:'',
     model:'',
     year:'',
-    price:'',
+    price:0,
     description:'',
     image:'',
   };
