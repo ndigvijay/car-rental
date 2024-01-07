@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import StripeCheckout from 'react-stripe-checkout';
 
 const Car = () => {
   const [car, setCar] = useState({});
   const { carId } = useParams();
-  const API_KEY="pk_test_51OEB84SIizVdAshZP3PTiQGR0HKc8mfpxgdJkcAulx578qiw61DqPa2BkTK8UjeROuWVHWeONYI0UZGwr1AH5Ese00uYDj1N7M"
+  const API_KEY = "pk_test_51OEB84SIizVdAshZP3PTiQGR0HKc8mfpxgdJkcAulx578qiw61DqPa2BkTK8UjeROuWVHWeONYI0UZGwr1AH5Ese00uYDj1N7M";
+  const navigate = useNavigate();
 
-  const onToken=(token)=>{
-    console.log(token)
-    alert("Payment receipt emailed to " + JSON.stringify(token.email));
-  }
+  const [startTime, setStartTime] = useState(null);
+
+  const [endTime, setEndTime] = useState(null);
+  const [minStartTime, setMinStartTime] = useState(new Date().toISOString().split('.')[0]);
+  const [durationInDays, setDurationInDays] = useState(0);
+
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/app/getcar/${carId}`);
+        const userToken = localStorage.getItem('userToken');
+        if (!userToken) {
+          navigate("/login");
+        }
 
-        if (response.status === 200) {
+        const response = await fetch(`http://localhost:4000/app/getcar/${carId}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': userToken,
+          },
+        });
+
+        if (response.status === 404 || response.status === 400) {
+          alert("no car found");
+        } else if (response.status === 200) {
           const carData = await response.json();
           setCar(carData);
         } else {
-          alert('Car not found');
+          alert("login to rent cars");
+          navigate("/login");
         }
       } catch (error) {
         console.log('Error fetching car details:', error);
@@ -30,6 +46,38 @@ const Car = () => {
 
     fetchCarDetails();
   }, [carId]);
+
+  const handleStartTimeChange = (event) => {
+    setStartTime(event.target.value);
+  };
+
+  const handleEndTimeChange = (event) => {
+    setEndTime(event.target.value);
+  };
+
+  useEffect(() => {
+    // Recalculate durationInDays whenever startTime or endTime changes
+    if (startTime && endTime) {
+      const startDateTime = new Date(startTime);
+      const endDateTime = new Date(endTime);
+      const calculatedDurationInDays = Math.ceil((endDateTime - startDateTime) / (1000 * 60 * 60 * 24));
+      setDurationInDays(calculatedDurationInDays);
+      // alert(durationInDays);
+    }
+  }, [startTime, endTime]);
+
+  const onToken = () => {
+    // Use the calculated durationInDays in your onToken function
+    const price = parseInt(car.price, 10);
+    const totalPrice = durationInDays * price;
+
+    console.log(`Duration: ${durationInDays} days`);
+    console.log(`Total Price: $${totalPrice}`);
+
+    alert(`Payment receipt emailed  ${startTime} - ${endTime}. Total Price: $${totalPrice}`);
+    setStartTime(null);
+    setEndTime(null); 
+  };
 
   return (
     <div>
@@ -49,8 +97,10 @@ const Car = () => {
                 <p className="card-text">{`Year: ${car.year}`}</p>
                 <p className="card-text">{`Price: ${car.price}`}</p>
                 <p className="card-text">{`Description: ${car.description}`}</p>
+                <p className="card-text">Start Time: <input type="datetime-local" onChange={handleStartTimeChange} min={minStartTime} /></p>
+                <p className="card-text">End Time: <input type="datetime-local" onChange={handleEndTimeChange} /></p>
                 <p className="card-text">
-                  <StripeCheckout stripeKey={API_KEY} token={onToken}/>
+                  <StripeCheckout stripeKey={API_KEY} token={() => onToken()} />
                 </p>
               </div>
             </div>
