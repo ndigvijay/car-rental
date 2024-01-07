@@ -20,7 +20,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:4000/app/login', {
         method: 'POST',
@@ -29,21 +29,24 @@ const Login = () => {
         },
         body: JSON.stringify(form),
       });
-
+  
       if (response.status === 200) {
+        const data = await response.json();
+        const userToken = data.token;
+  
+        localStorage.setItem('userToken', userToken);
+  
         alert('Logged in successfully');
         setFormValue(initialFormValue);
-        navigate("/cars")
+        navigate("/cars");
       } else if (response.status === 401 || response.status === 404) {
         alert('Invalid email/password');
         setFormValue(initialFormValue);
       } else {
-        // Display error message on the UI
         alert('An unexpected error occurred');
         setFormValue(initialFormValue);
       }
     } catch (error) {
-      // Display error message on the UI
       alert('An error occurred');
       console.error('Error:', error);
       setFormValue(initialFormValue);

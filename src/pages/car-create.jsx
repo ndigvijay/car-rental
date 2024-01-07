@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const CreateCars = () => {
   const initialFormValue = {
@@ -12,7 +12,14 @@ const CreateCars = () => {
     image:'',
   };
   const [form, setFormValue] = useState(initialFormValue);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      navigate('/admin');
+    }
+  }, [navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,10 +33,16 @@ const CreateCars = () => {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem('adminToken');
+      if(!token){
+        navigate("/admin");
+        return;
+      }
       const response = await fetch('http://localhost:4000/app/createcar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-access-token': token,
         },
         body: JSON.stringify(form),
       });

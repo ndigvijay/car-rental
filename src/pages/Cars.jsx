@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 const Cars = () => {
   const filters = {
-      minPrice: 0,
+    minPrice: 0,
     maxPrice: 0,
   };
   const intial_setmake=[]

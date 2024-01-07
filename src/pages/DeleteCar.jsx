@@ -1,25 +1,46 @@
 // Import necessary dependencies and components
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
+
 
 const DeleteCar = () => {
   const [deleteID, setDeleteID] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      navigate('/admin');
+    }
+  }, [navigate]);
 
   const handleDelete = async () => {
     try {
+      const token = localStorage.getItem('adminToken');
+      if (!token) {
+        navigate("/admin");
+        return; 
+      }
+
       const response = await fetch(`http://localhost:4000/app/deletecar/${deleteID}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+        },
       });
 
       if (response.ok) {
-        setMessage('Car deleted successfully');
+        alert('Car deleted successfully');
       } else {
-        setMessage('Failed to delete car');
+        alert('Failed to delete car');
       }
     } catch (error) {
       console.error('Error deleting car:', error);
-      setMessage('Internal server error');
+      alert('Internal server error');
     }
   };
 

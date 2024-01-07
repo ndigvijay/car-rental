@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
+
 
 const Signup = () => {
     const initialFormValue = {
@@ -8,6 +10,8 @@ const Signup = () => {
         confirm_password: '',
     };
     const [form, setFormValue] = useState(initialFormValue);
+    const navigate = useNavigate();
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -37,21 +41,21 @@ const Signup = () => {
                     setFormValue(initialFormValue);
                     const data = await response.json();
                     console.log(data);
-                    // You can redirect to a success page or perform other actions here
+                    navigate("/login")
                 } else if (response.status === 404) {
                     alert("User already exists");
                     setFormValue(initialFormValue);
-                    // Handle the case where the user already exists
+                    navigate("/login")
                 } else {
                     alert("An unexpected error occurred");
                     setFormValue(initialFormValue);
-                    // Handle other errors as needed
+                   
                 }
             } catch (error) {
                 alert("An error occurred");
                 console.error("Error:", error);
                 setFormValue(initialFormValue);
-                // Handle network or other errors here
+            
             }
         }
     };

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
+
 
 const UpdateCar = () => {
   const initialFormData = {
@@ -11,13 +13,26 @@ const UpdateCar = () => {
     description: '',
     image: '',
   };
-
+  const navigate = useNavigate();
   const [searchID, setSearchID] = useState('');
   const [cars, setCars] = useState([]);
   const [formData, setFormData] = useState(initialFormData);
 
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      navigate('/admin');
+    }
+  }, [navigate]);
+  
   const handleSearch = async () => {
-    const response = await fetch(`http://localhost:4000/app/getcar/${searchID}`);
+    const token = localStorage.getItem('adminToken');
+    const response = await fetch(`http://localhost:4000/app/getcar/${searchID}`,{
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+        },
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -27,7 +42,7 @@ const UpdateCar = () => {
           ...data,
           id: searchID,
         });
-      } else {
+      } else if (response.status===404){
         setCars([]);
         setFormData(initialFormData);
         alert('No car with ID ' + searchID + ' found');
@@ -50,18 +65,26 @@ const UpdateCar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`http://localhost:4000/app/updatecar/${searchID}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      // Retrieve the user token from local storage
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`http://localhost:4000/app/updatecar/${searchID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (response.ok) {
-      alert('Car information updated successfully');
-    } else {
-      alert('Failed to update car information');
+      if (response.ok) {
+        alert('Car information updated successfully');
+      } else {
+        alert('Failed to update car information');
+      }
+    } catch (error) {
+      console.error('Error updating car:', error);
+      alert('An unexpected error occurred');
     }
   };
 
@@ -91,88 +114,88 @@ const UpdateCar = () => {
             {cars.map((car) => (
               <div key={car._id}>
                 <h1 className="text-center pt-2 font-weight-bold">Car Update</h1>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                  <div className="mb-3">
-                    <label htmlFor="make" className="form-label">
-                      Make:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="make"
-                      name="make"
-                      value={formData.make}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="model" className="form-label">
-                      Model:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="model"
-                      name="model"
-                      value={formData.model}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="year" className="form-label">
-                      Year:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="year"
-                      name="year"
-                      value={formData.year}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="price" className="form-label">
-                      Price:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="price"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="description" className="form-label">
-                      Description:
-                    </label>
-                    <textarea
-                      className="form-control"
-                      id="description"
-                      name="description"
-                      value={formData.description}
-                      onChange={handleChange}
-                    ></textarea>
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="image" className="form-label">
-                      Image URL:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="image"
-                      name="image"
-                      value={formData.image}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-success">
-                    Save Changes
-                  </button>
-                </form>
+                  <form onSubmit={(e) => handleSubmit(e)}>
+                    <div className="mb-3">
+                      <label htmlFor="make" className="form-label">
+                        Make:
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="make"
+                        name="make"
+                        value={formData.make}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="model" className="form-label">
+                        Model:
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="model"
+                        name="model"
+                        value={formData.model}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="year" className="form-label">
+                        Year:
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="year"
+                        name="year"
+                        value={formData.year}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="price" className="form-label">
+                        Price:
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="price"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="description" className="form-label">
+                        Description:
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                      ></textarea>
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="image" className="form-label">
+                        Image URL:
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="image"
+                        name="image"
+                        value={formData.image}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <button type="submit" className="btn btn-success">
+                      Save Changes
+                    </button>
+                  </form>
                 {/* {formData} */}
               </div>
             ))}

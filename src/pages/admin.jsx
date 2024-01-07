@@ -31,14 +31,17 @@ const AdminLogin = () => {
       });
       // alert(response.status)
       if (response.status === 200) {
+        const { token } = await response.json();
+        localStorage.setItem('adminToken', token);
         navigate("/createcar")
         alert('Logged in successfully');
         setFormValue(initialFormValue);
-      } else if (response.status === 404) {
+      } else if (response.status === 404|| response.status ===401) {
         alert('Invalid email/password');
         setFormValue(initialFormValue);
       } else {
         alert('An unexpected error occurred');
+        // alert(response.status)
         setFormValue(initialFormValue);
       }
     } catch (error) {
