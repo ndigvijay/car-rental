@@ -99,11 +99,11 @@ const Cars = () => {
                   className="form-select"
                   id="brand"
                   value={filter.make}
-                  onChange={(e) => setFilter({ ...filter, make: e.target.value })}
+                  onChange={(e) => setFilter( {make: e.target.value })}
                 >
                   <option value="">All Brands</option>
                   {make.map((brand, index) => (
-                    <option key={index} value={brand} onChange={(e)=>setFiltermake(e.target.value)}>{brand}</option>
+                    <option key={index} value={brand}>{brand}</option>
                   ))}
                 </select>
               </div>
