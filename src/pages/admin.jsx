@@ -22,7 +22,7 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/app/admin', {
+      const response = await fetch('https://car-rental-sfqr.onrender.com/app/admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

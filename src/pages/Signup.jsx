@@ -28,7 +28,7 @@ const Signup = () => {
             alert("Password and Confirm Password do not match");
         } else {
             try {
-                const response = await fetch('http://localhost:4000/app/signup', {
+                const response = await fetch('https://car-rental-sfqr.onrender.com/app/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

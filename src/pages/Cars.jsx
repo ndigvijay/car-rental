@@ -17,7 +17,7 @@ const Cars = () => {
 
   const handleFilter = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/app/filtercars?make=${filtermake}&model=${searchTerm}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}`);
+      const response = await fetch(`https://car-rental-sfqr.onrender.com/app/filtercars?make=${filtermake}&model=${searchTerm}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}`);
       if(response.status===200){
         const jsonData = await response.json();
           setData(jsonData)
@@ -33,7 +33,7 @@ const Cars = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/app/searchcars?name=${searchTerm}`);
+      const response = await fetch(`https://car-rental-sfqr.onrender.com/app/searchcars?name=${searchTerm}`);
 
       if (response.status === 200) {
         const jsonData = await response.json();
@@ -52,7 +52,7 @@ const Cars = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:4000/app/getcars");
+      const response = await fetch("https://car-rental-sfqr.onrender.com/app/getcars");
 
       if (response.status === 200) {
         const jsonData = await response.json();
