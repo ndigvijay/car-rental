@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await fetch('http://localhost:4000/app/getcarsHome'); // replace with your actual backend URL
+        const response = await fetch('https://car-rental-sfqr.onrender.com/app/getcarsHome'); // replace with your actual backend URL
         if (response.ok) {
           const data = await response.json();
           setCars(data);

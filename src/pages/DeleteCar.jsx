@@ -25,7 +25,7 @@ const DeleteCar = () => {
         return; 
       }
 
-      const response = await fetch(`http://localhost:4000/app/deletecar/${deleteID}`, {
+      const response = await fetch(`https://car-rental-sfqr.onrender.com/app/deletecar/${deleteID}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -27,7 +27,7 @@ const UpdateCar = () => {
   
   const handleSearch = async () => {
     const token = localStorage.getItem('adminToken');
-    const response = await fetch(`http://localhost:4000/app/getcar/${searchID}`,{
+    const response = await fetch(`https://car-rental-sfqr.onrender.com/app/getcar/${searchID}`,{
         headers: {
           'Content-Type': 'application/json',
           'x-access-token': token,
@@ -68,7 +68,7 @@ const UpdateCar = () => {
     try {
       // Retrieve the user token from local storage
       const token = localStorage.getItem('adminToken');
-      const response = await fetch(`http://localhost:4000/app/updatecar/${searchID}`, {
+      const response = await fetch(`https://car-rental-sfqr.onrender.com/app/updatecar/${searchID}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

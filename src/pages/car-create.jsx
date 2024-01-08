@@ -38,7 +38,7 @@ const CreateCars = () => {
         navigate("/admin");
         return;
       }
-      const response = await fetch('http://localhost:4000/app/createcar', {
+      const response = await fetch('https://car-rental-sfqr.onrender.com/app/createcar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
