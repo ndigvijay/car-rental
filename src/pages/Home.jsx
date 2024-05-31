@@ -25,21 +25,18 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="home_page_div">
+      <div className="flex justify-center items-center flex-wrap md:flex-row text-xl md:text-2xl lg:text-4xl pt-12 md:pt-24 lg:pt-32 font-serif">
         <div>
           <h1>Welcome to Cruise Connect</h1>
-          <p className="lead">Rent a car for your next adventure!</p>
-          <hr />
+          <p className="">Rent a car for your next adventure!</p>
+          <hr className='border-t-2 border-gray-500' />
           <p>Explore our premium selection of cars at affordable prices.</p>
           <br />
           <br />
-          <a href="/cars" className="btn btn-primary btn-lg">Browse Cars</a>
+          <a href="/cars" className="">Browse Cars</a>
         </div>
+          <img className='w-auto h-auto' src="https://imgd-ct.aeplcdn.com/370x231/n/cw/ec/48034/2-series-gran-coupe-exterior-right-front-three-quarter.jpeg?q=80" alt="car image" />
 
-        <div>
-          <img className='home_img' src="https://pngimg.com/d/bmw_PNG1710.png" alt="car image" />
-          <div className="home_page_inner_div"></div>
-        </div>
       </div>
 
       {/* Responsive Car Display */}
