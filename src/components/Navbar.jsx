@@ -24,7 +24,7 @@ const Navbar = () => {
           <li className="nav-item"><NavLink className="nav-link p-2" to="/">Home</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link p-2" to="/cars">Cars</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link p-2" to="/about-us">About Us</NavLink></li>
-          <li className="nav-item"><NavLink`` className="nav-link p-2" to="/contact-us">Contact Us</NavLink></li>
+          <li className="nav-item"><NavLink className="nav-link p-2" to="/contact-us">Contact Us</NavLink></li>
         </ul>
 
         <div className="flex items-center mt-4 sm:mt-0">
