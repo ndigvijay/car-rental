@@ -33,7 +33,7 @@ const Home = () => {
           <p>Explore our premium selection of cars at affordable prices.</p>
           <br />
           <br />
-          <a href="/cars" className="">Browse Cars</a>
+          <a href="/cars" className="bg-blue-500 hover:bg-blue-700 text-white font-sana  px-4 rounded">Browse Cars</a>
         </div>
           <img className='w-auto h-auto' src="https://imgd-ct.aeplcdn.com/370x231/n/cw/ec/48034/2-series-gran-coupe-exterior-right-front-three-quarter.jpeg?q=80" alt="car image" />
 

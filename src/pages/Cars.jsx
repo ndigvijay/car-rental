@@ -75,9 +75,9 @@ const Cars = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mt-5">
-        <h2>Cars</h2>
-        <div className="row">
+      <h2 className="italic underline mt-5 mb-20 text-center text-blue-400 font-bold font-mono">Cars</h2>
+      {/* <div className="container mt-5 text-center">
+        <div className="flex flex-wrap justify-around">
           <div className="col-md-6 mb-4">
             <div className="input-group">
               <input
@@ -87,14 +87,14 @@ const Cars = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <button className="btn btn-primary" onClick={handleSearch}>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSearch}>
                 Search
               </button>
             </div>
 
             <form>
-              <div className="mb-3">
-                <label htmlFor="brand" className="form-label">Filter by Brand:</label>
+              <div className="">
+                <p htmlFor="brand" className="form-p">Filter by Brand:</p>
                 <select
                   className="form-select"
                   id="brand"
@@ -130,14 +130,14 @@ const Cars = () => {
                 />
               </div>
 
-              <button type="button" className="btn btn-primary" onClick={handleFilter}>
+              <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleFilter}>
                 Apply Filters
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
 
-        <div className="row">
+        <div className="flex flex-wrap justify-around">
           {data.map((car) => (
             <div key={car._id} className="col-md-4 mb-4">
               <Link to={`/cars/${car._id}`} style={{ textDecoration: 'none' }}>
@@ -160,7 +160,7 @@ const Cars = () => {
           ))}
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

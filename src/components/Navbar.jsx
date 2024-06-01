@@ -32,8 +32,8 @@ const Navbar = () => {
             <button className="btn btn-danger ml-0 sm:ml-4" onClick={handleLogout}>Logout</button>
           ) : (
             <div className="flex flex-col sm:flex-row">
-              <button className="btn btn-primary mb-2 sm:mb-0 sm:mr-4" onClick={() => navigate("/login")}>Login</button>
-              <button className="btn btn-primary" onClick={() => navigate("/signup")}>Sign Up</button>
+              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => navigate("/login")}>Login</button>
+              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => navigate("/signup")}>Sign Up</button>
             </div>
           )}
         </div>

@@ -57,42 +57,48 @@ const Login = () => {
     <div>
       <Navbar />
       <section>
-        <div className="container mt-5 pt-5">
-          <div className="row">
-            <div className="col-12 col-sm-7 col-md-6 m-auto">
-              <div className="card border-0 shadow">
-                <div className="card-body">
-                  <h2 className="card-title">LOGIN</h2>
-                  <form onSubmit={handleSubmit}>
+        <div className="container mx-auto mt-5 pt-5">
+          <div className="flex flex-col justify-center items-center mt-20">
+            <div className="w-full max-w-sm">
+              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <h2 className="text-center text-2xl font-bold mb-6">LOGIN</h2>
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div>
                     <input
                       type="text"
                       name="email"
-                      className="form-control my-4 py-2"
+                      className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
                       placeholder="Email"
                       onChange={handleInputChange}
                       value={form.email}
                     />
+                  </div>
+                  <div>
                     <input
                       type="password"
                       name="password"
-                      className="form-control my-4 py-2"
+                      className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
                       placeholder="Password"
                       onChange={handleInputChange}
                       value={form.password}
                     />
-                    <div className="text-center mt-3">
-                      <button type="submit" className="btn btn-primary">
-                        Login
-                      </button>
-                      <a href="/signup" className="nav-link">
+                  </div>
+                  <div className="text-center mt-4">
+                    <button type="submit" className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                      Login
+                    </button>
+                    <div className="mt-4">
+                      <a href="/signup" className="text-blue-500 hover:underline">
                         Don't have an account?
                       </a>
-                      <a href="/admin" className="nav-link">
-                        want to login as admin?
+                    </div>
+                    <div className="mt-2">
+                      <a href="/admin" className="text-blue-500 hover:underline">
+                        Want to login as admin?
                       </a>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
