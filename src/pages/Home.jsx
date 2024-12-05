@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await fetch('https://car-rental-sfqr.onrender.com/app/getcarsHome');
+        const response = await fetch('http://64.227.147.171:4000/api/getcarsHome');
         if (response.ok) {
           const data = await response.json();
           setCars(data);

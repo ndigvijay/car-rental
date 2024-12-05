@@ -23,7 +23,7 @@ const Car = () => {
           navigate("/login");
         }
 
-        const response = await fetch(`https://car-rental-sfqr.onrender.com/app/getcar/${carId}`, {
+        const response = await fetch(`http://64.227.147.171:4000/api/getcar/${carId}`, {
           headers: {
             'Content-Type': 'application/json',
             'x-access-token': userToken,
