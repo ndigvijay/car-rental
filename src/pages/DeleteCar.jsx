@@ -25,7 +25,7 @@ const DeleteCar = () => {
         return; 
       }
 
-      const response = await fetch(`http://64.227.147.171:4000/api/deletecar/${deleteID}`, {
+      const response = await fetch(`https://api.cruiseconnect.in/api/deletecar/${deleteID}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://64.227.147.171:4000/api/login', {
+      const response = await fetch('https://api.cruiseconnect.in/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
