@@ -32,7 +32,8 @@ const Login = () => {
   
       if (response.status === 200) {
         const data = await response.json();
-        localStorage.setItem('userToken', data.accessToken);
+        // console.log(data)
+        localStorage.setItem('userToken', data.token);
         navigate('/');
       } else {
         alert('Invalid credentials');
