@@ -14,29 +14,143 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-200 p-4">
-      <div className="container mx-auto flex flex-wrap items-center justify-between">
-        <NavLink className="flex items-center" to="/">
-          <img className="cruise_connect_logo" src={logo} alt="logo" />
+    <nav className="bg-gray-900">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <NavLink to="/" className="flex items-center">
+          <img src={logo} alt="Cruise Connect" className="h-8 w-auto mr-2"/>
+          <span className="text-white font-bold text-xl">Cruise Connect</span>
         </NavLink>
-
-        <ul className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0 sm:text-sm">
-          <li className="nav-item"><NavLink className="nav-link p-2" to="/">Home</NavLink></li>
-          <li className="nav-item"><NavLink className="nav-link p-2" to="/cars">Cars</NavLink></li>
-          <li className="nav-item"><NavLink className="nav-link p-2" to="/about-us">About Us</NavLink></li>
-          <li className="nav-item"><NavLink className="nav-link p-2" to="/contact-us">Contact Us</NavLink></li>
-        </ul>
-
-        <div className="flex items-center mt-4 sm:mt-0">
+        <div className="hidden md:flex space-x-6">
+          <NavLink
+            to="/"
+            className="text-gray-300 hover:text-white transition duration-200"
+            activeClassName="text-white"
+            exact
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/cars"
+            className="text-gray-300 hover:text-white transition duration-200"
+            activeClassName="text-white"
+          >
+            Cars
+          </NavLink>
+          <NavLink
+            to="/about-us"
+            className="text-gray-300 hover:text-white transition duration-200"
+            activeClassName="text-white"
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to="/contact-us"
+            className="text-gray-300 hover:text-white transition duration-200"
+            activeClassName="text-white"
+          >
+            Contact Us
+          </NavLink>
+        </div>
+        <div className="hidden md:flex items-center space-x-4">
           {userToken || adminToken ? (
-            <button className="btn btn-danger ml-0 sm:ml-4" onClick={handleLogout}>Logout</button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+            >
+              Logout
+            </button>
           ) : (
-            <div className="flex flex-col sm:flex-row">
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => navigate("/login")}>Login</button>
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => navigate("/signup")}>Sign Up</button>
-            </div>
+            <>
+              <NavLink
+                to="/login"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/signup"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+              >
+                Register
+              </NavLink>
+            </>
           )}
         </div>
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          {/* Implement mobile menu button */}
+        </div>
+      </div>
+      {/* Mobile Menu */}
+      <div className="md:hidden">
+        <ul className="px-4 pt-2 pb-4 space-y-1 bg-gray-800">
+          <li>
+            <NavLink
+              to="/"
+              className="block text-gray-300 hover:text-white transition duration-200"
+              activeClassName="text-white"
+              exact
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/cars"
+              className="block text-gray-300 hover:text-white transition duration-200"
+              activeClassName="text-white"
+            >
+              Cars
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about-us"
+              className="block text-gray-300 hover:text-white transition duration-200"
+              activeClassName="text-white"
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact-us"
+              className="block text-gray-300 hover:text-white transition duration-200"
+              activeClassName="text-white"
+            >
+              Contact Us
+            </NavLink>
+          </li>
+          {userToken || adminToken ? (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="w-full text-left bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <NavLink
+                  to="/login"
+                  className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/signup"
+                  className="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                >
+                  Register
+                </NavLink>
+              </li>
+            </>
+          )}
+        </ul>
       </div>
     </nav>
   );

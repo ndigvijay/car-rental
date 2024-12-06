@@ -32,78 +32,70 @@ const Login = () => {
   
       if (response.status === 200) {
         const data = await response.json();
-        const userToken = data.token;
-  
-        localStorage.setItem('userToken', userToken);
-  
-        alert('Logged in successfully');
-        setFormValue(initialFormValue);
-        navigate("/cars");
-      } else if (response.status === 401 || response.status === 404) {
-        alert('Invalid email/password');
-        setFormValue(initialFormValue);
+        localStorage.setItem('userToken', data.accessToken);
+        navigate('/');
       } else {
-        alert('An unexpected error occurred');
-        setFormValue(initialFormValue);
+        alert('Invalid credentials');
       }
     } catch (error) {
-      alert('An error occurred');
-      console.error('Error:', error);
-      setFormValue(initialFormValue);
+      console.log('Error during login:', error);
     }
   };
 
   return (
-    <div>
+    <div className="h-[100vh] flex flex-col">
       <Navbar />
-      <section>
-        <div className="container mx-auto mt-5 pt-5">
-          <div className="flex flex-col justify-center items-center mt-20">
-            <div className="w-full max-w-sm">
-              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h2 className="text-center text-2xl font-bold mb-6">LOGIN</h2>
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div>
-                    <input
-                      type="text"
-                      name="email"
-                      className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
-                      placeholder="Email"
-                      onChange={handleInputChange}
-                      value={form.email}
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="password"
-                      name="password"
-                      className="w-full px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
-                      placeholder="Password"
-                      onChange={handleInputChange}
-                      value={form.password}
-                    />
-                  </div>
-                  <div className="text-center mt-4">
-                    <button type="submit" className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
-                      Login
-                    </button>
-                    <div className="mt-4">
-                      <a href="/signup" className="text-blue-500 hover:underline">
-                        Don't have an account?
-                      </a>
-                    </div>
-                    <div className="mt-2">
-                      <a href="/admin" className="text-blue-500 hover:underline">
-                        Want to login as admin?
-                      </a>
-                    </div>
-                  </div>
-                </form>
-              </div>
+      <div
+        className="flex-grow bg-cover bg-center"
+        style={{ backgroundImage: 'url(/path-to-your-car-image.jpg)' }}
+      >
+        <div className="flex items-center justify-center h-full bg-gray-900 bg-opacity-50">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition duration-500 hover:scale-105"
+          >
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+              Login to Your Account
+            </h2>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-1">Email</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                placeholder="Enter your email"
+                required
+              />
             </div>
-          </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 mb-1">Password</label>
+              <input
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+            >
+              Login
+            </button>
+            <p className="mt-4 text-center text-gray-600">
+              Don't have an account?{' '}
+              <a href="/register" className="text-blue-600 hover:underline">
+                Register
+              </a>
+            </p>
+          </form>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
