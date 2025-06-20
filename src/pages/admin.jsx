@@ -22,7 +22,7 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://api.cruiseconnect.in/api/admin', {
+      const response = await fetch('https://cruise-connect-backend.onrender.com/api/admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

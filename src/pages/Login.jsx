@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('https://api.cruiseconnect.in/api/login', {
+      const response = await fetch('https://cruise-connect-backend.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,54 +44,64 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[100vh] flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <div
-        className="flex-grow bg-cover bg-center"
-        style={{ backgroundImage: 'url(/path-to-your-car-image.jpg)' }}
+        className="flex-grow bg-cover bg-center relative"
+        style={{ 
+          backgroundImage: 'url("https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80")'
+        }}
       >
-        <div className="flex items-center justify-center h-full bg-gray-900 bg-opacity-50">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-purple-900/80"></div>
+        <div className="flex items-center justify-center min-h-full p-4 relative">
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition duration-500 hover:scale-105"
+            className="glass-card p-8 w-full max-w-md animate-fade-in-up"
           >
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-              Login to Your Account
-            </h2>
+            <div className="text-center mb-6">
+              <h2 className="text-3xl font-bold text-gray-800 gradient-text">
+                Welcome Back
+              </h2>
+              <p className="text-gray-600 mt-2">Login to your account</p>
+            </div>
+            
             <div className="mb-4">
-              <label className="block text-gray-700 mb-1">Email</label>
+              <label className="form-label">Email</label>
               <input
                 name="email"
                 type="email"
                 value={form.email}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                className="form-input"
                 placeholder="Enter your email"
                 required
               />
             </div>
+            
             <div className="mb-6">
-              <label className="block text-gray-700 mb-1">Password</label>
+              <label className="form-label">Password</label>
               <input
                 name="password"
                 type="password"
                 value={form.password}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                className="form-input"
                 placeholder="Enter your password"
                 required
               />
             </div>
+            
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+              className="w-full btn-primary text-center"
             >
               Login
             </button>
-            <p className="mt-4 text-center text-gray-600">
+            
+            <p className="mt-6 text-center text-gray-600">
               Don't have an account?{' '}
-              <a href="/register" className="text-blue-600 hover:underline">
-                Register
+              <a href="/signup" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-300">
+                Register here
               </a>
             </p>
           </form>

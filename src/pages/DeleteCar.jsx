@@ -25,7 +25,7 @@ const DeleteCar = () => {
         return; 
       }
 
-      const response = await fetch(`https://api.cruiseconnect.in/api/deletecar/${deleteID}`, {
+      const response = await fetch(`https://cruise-connect-backend.onrender.com/api/deletecar/${deleteID}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

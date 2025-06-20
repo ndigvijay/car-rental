@@ -17,7 +17,7 @@ const Cars = () => {
 const handleSearch = async () => {
   try {
     setIsLoading(true);
-    const response = await fetch(`https://api.cruiseconnect.in/api/searchcars?name=${searchTerm}`);
+    const response = await fetch(`https://cruise-connect-backend.onrender.com/api/searchcars?name=${searchTerm}`);
 
     if (response.status === 200) {
       const jsonData = await response.json();
@@ -40,7 +40,7 @@ const handleFilter = async () => {
   try {
     setIsLoading(true);
     const response = await fetch(
-      `https://api.cruiseconnect.in/api/filtercars?make=${filtermake}&model=${searchTerm}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}`
+      `https://cruise-connect-backend.onrender.com/api/filtercars?make=${filtermake}&model=${searchTerm}&minPrice=${filter.minPrice}&maxPrice=${filter.maxPrice}`
     );
     
     if (response.status === 200) {
@@ -62,7 +62,7 @@ const handleFilter = async () => {
 const fetchData = async () => {
   try {
     setIsLoading(true);
-    const response = await fetch("https://api.cruiseconnect.in/api/getcars");
+    const response = await fetch("https://cruise-connect-backend.onrender.com/api/getcars");
 
     if (response.status === 200) {
       const jsonData = await response.json();
@@ -166,33 +166,34 @@ const fetchData = async () => {
         </div>
 
         {/* Cars Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation">
           {data.map((car) => (
             <div 
               key={car._id} 
-              className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="car-card transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               <Link to={`/cars/${car._id}`}>
-                <div className="relative">
+                <div className="relative overflow-hidden">
                   <img
                     src={car.image}
-                    className="w-full h-56 object-cover transform transition-transform duration-300 hover:scale-105"
+                    className="w-full h-56 object-cover transform transition-transform duration-500"
                     alt={`${car.make} ${car.model}`}
                   />
-                  <div className="absolute top-0 right-0 m-4 bg-blue-600 text-white px-3 py-1 rounded-full">
+                  <div className="absolute top-0 right-0 m-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                     ${car.price}/day
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"></div>
                 </div>
                 <div className="p-6">
-                  <h5 className="text-xl font-semibold mb-2">{`${car.make} ${car.model}`}</h5>
+                  <h5 className="text-xl font-semibold mb-2 gradient-text">{`${car.make} ${car.model}`}</h5>
                   <div className="flex items-center mb-4">
-                    <svg className="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-amber-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span className="text-gray-600">{car.year}</span>
+                    <span className="text-gray-600 font-medium">{car.year}</span>
                   </div>
-                  <p className="text-gray-600 line-clamp-2 mb-4">{car.description}</p>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                  <p className="text-gray-600 line-clamp-2 mb-4 leading-relaxed">{car.description}</p>
+                  <button className="w-full btn-primary text-center">
                     View Details
                   </button>
                 </div>
@@ -204,7 +205,7 @@ const fetchData = async () => {
         {/* Loading State */}
         {isLoading && (
           <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+            <div className="spinner"></div>
           </div>
         )}
 

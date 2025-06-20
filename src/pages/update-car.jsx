@@ -27,7 +27,7 @@ const UpdateCar = () => {
   
   const handleSearch = async () => {
     const token = localStorage.getItem('adminToken');
-    const response = await fetch(`https://api.cruiseconnect.in/api/getcar/${searchID}`,{
+    const response = await fetch(`https://cruise-connect-backend.onrender.com/api/getcar/${searchID}`,{
         headers: {
           'Content-Type': 'application/json',
           'x-access-token': token,
@@ -68,7 +68,7 @@ const UpdateCar = () => {
     try {
       // Retrieve the user token from local storage
       const token = localStorage.getItem('adminToken');
-      const response = await fetch(`https://api.cruiseconnect.in/api/updatecar/${searchID}`, {
+      const response = await fetch(`https://cruise-connect-backend.onrender.com/api/updatecar/${searchID}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

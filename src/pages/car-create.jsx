@@ -38,7 +38,7 @@ const CreateCars = () => {
         navigate("/admin");
         return;
       }
-      const response = await fetch('https://api.cruiseconnect.in/api/createcar', {
+      const response = await fetch('https://cruise-connect-backend.onrender.com/api/createcar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

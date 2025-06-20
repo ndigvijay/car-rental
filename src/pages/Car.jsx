@@ -23,7 +23,7 @@ const Car = () => {
           navigate("/login");
         }
 
-        const response = await fetch(`https://api.cruiseconnect.in/api/getcar/${carId}`, {
+        const response = await fetch(`https://cruise-connect-backend.onrender.com/api/getcar/${carId}`, {
           headers: {
             'Content-Type': 'application/json',
             'x-access-token': userToken,

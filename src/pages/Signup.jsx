@@ -26,7 +26,7 @@ const Signup = () => {
       alert("Password and Confirm Password do not match");
     } else {
       try {
-        const response = await fetch('https://api.cruiseconnect.in/api/signup', {
+        const response = await fetch('https://cruise-connect-backend.onrender.com/api/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
